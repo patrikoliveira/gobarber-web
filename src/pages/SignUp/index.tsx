@@ -23,15 +23,13 @@ const SignUp: React.FC = () => {
         email: Yup.string()
           .required('E-mail obrigatório')
           .email('Digite um e-mail valido'),
-        password: Yup.string().min(6, 'No mínimo 6 dígitos'),
+        password: Yup.string().required('Senha obrigatória'),
       });
 
       await schema.validate(data, {
         abortEarly: false,
       });
     } catch (error) {
-      console.log(error);
-
       const errros = getValidationErrors(error);
 
       formRef.current?.setErrors(errros);
